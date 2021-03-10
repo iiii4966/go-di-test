@@ -73,11 +73,11 @@ func Register(
 	userService *service.UserService,
 	validator *validator.Validate,
 ) *fiber.App {
+	migration(db)
+
 	// Don't change order.
 	SetupMiddleware(server)
 	SetupRoutes(server, userService, validator)
-
-	migration(db)
 
 	lc.Append(fx.Hook{
 		OnStart: func(context.Context) error {
