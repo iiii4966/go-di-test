@@ -14,10 +14,7 @@ builds:
       - windows
       - darwin
 archives:
-  - id: my-archive
-  - format: binary
   - replacements:
-      darwin: Darwin
       linux: Linux
 checksum:
   name_template: 'checksums.txt'
