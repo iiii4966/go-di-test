@@ -19,14 +19,16 @@ import (
 	"log"
 )
 
-var isPrefork = flag.Bool("prefork", false, "whether server multiprocessor")
-var host = flag.String("host", "0.0.0.0", "server host")
-var port = flag.String("port", "8080", "server port")
-var dbUserName = flag.String("dbUserName", "tester", "db user")
-var dbPassword = flag.String("dbPassword", "1234", "db password")
-var dbHost = flag.String("dbHost", "localhost", "db host")
-var dbPort = flag.String("dbPort", "5432", "db port")
-var dbName = flag.String("dbName", "test", "db name")
+var (
+	isPrefork  = flag.Bool("prefork", false, "whether server multiprocessor")
+	host       = flag.String("host", "0.0.0.0", "server host")
+	port       = flag.String("port", "8080", "server port")
+	dbUserName = flag.String("dbUserName", "tester", "db user")
+	dbPassword = flag.String("dbPassword", "123", "db password")
+	dbHost     = flag.String("dbHost", "localhost", "db host")
+	dbPort     = flag.String("dbPort", "5672", "db port")
+	dbName     = flag.String("dbName", "test", "db name")
+)
 
 func NewServer() *fiber.App {
 	serverConfig := fiber.Config{Prefork: *isPrefork}
@@ -73,7 +75,7 @@ func Register(
 	userService *service.UserService,
 	validator *validator.Validate,
 ) *fiber.App {
-	migration(db)
+	//migration(db)
 
 	// Don't change order.
 	SetupMiddleware(server)
